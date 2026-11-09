@@ -1,0 +1,13 @@
+[project]
+name = "paidmedia"
+version = "0.1.0"
+description = "Thriveworks paid media API connections, reporting and management"
+requires-python = ">=3.10"
+dependencies = ["python-dotenv>=1.0"]
+
+[project.optional-dependencies]
+google = ["google-ads>=24"]
+dev = ["pytest>=8"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

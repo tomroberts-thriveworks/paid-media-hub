@@ -1,0 +1,11 @@
+.env
+*.json.secret
+client_secret*.json
+credentials/
+*.db
+*.sqlite
+data/
+__pycache__/
+.venv/
+.pytest_cache/
+*.egg-info/
