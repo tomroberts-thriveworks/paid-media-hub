@@ -34,3 +34,9 @@
 ## Brand restructure (2026-11-13)
 - Tom moved `thriveworks` [exact] into its own ad group "Brand - Thrivewors Keyword" (GGL_BRD_GSE_National; 1 keyword, 1 RSA enabled + approved). At check time, `thriveworks` [exact] was still ENABLED in "Brand - Thriveworks EM" too (duplicate).
 - Holding for now: splitting `thriveworks counseling` and the misspellings (thrivework / thrive work) into their own groups; moving the ambiguous `thrive …` keywords (~$17k/30d, mostly non-brand or other-practice traffic) out of brand.
+
+## GGL_NBD_GSE_ExactMatch_Tier 1 target raise (2026-11-13)
+- Tom plans to take it off portfolio "TW Non-brand | EM Tier 1 Only | tCPA | Account Goals" (only campaign in that portfolio; tCPA $36) and raise the target.
+- Baseline, Oct 14 - Nov 12: $44.3k spend; bids on account-level goals (1,008 conv: 796 CallRail local click-to-calls, 145 phone calls, 66 Event 1) = $44 per bidding conversion, already above the $36 target. Bookings* 224 (E1 66 / E4 158) -> CPB $198 vs $265 for all non-brand Search; Event 1-only CPB $672, also among the best. Search IS 16%, 84% lost to rank, 0% to budget ($4,800/day budget).
+- Same setup on GGL_NBD_GSE_ExactMatch_Tier 1_PsychMedication (portfolio tCPA $38, CPB $205).
+- Judge the change on Bookings* CPB, not the campaign's own CPA.
