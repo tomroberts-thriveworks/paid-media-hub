@@ -15,3 +15,17 @@
 - Allowed domains: googleads.googleapis.com, oauth2.googleapis.com.
 - Next: `PYTHONPATH=src python -m paidmedia.audit check`, then pull campaigns + conversion_actions, fix first-run issues, full pull, then deep structure review (user's first priority).
 - When moving to the laptop: revoke this refresh token, create a new one there.
+
+## Negative keyword decisions
+- **2026-11-13: Tom is creating a new shared negative keyword list, applied to all campaigns, starting with `kid`/`kids` and `sex`.**
+  Basis: 30-day search term review (Oct 14 - Nov 12, 2026, PMax + Search; account CPB $222):
+  - `kids` (broad): ~1,600 terms, ~$4.2k, 6.5 Bookings* (~$644 CPB), ~92% Search. `kid`: ~$120, 0 Bookings*.
+  - `sex` (broad): ~1,700 terms, ~$2.4k, 3.5 Bookings* (~$690 CPB). Booked terms were real sex-therapy intent ("sex therapist michigan", "christian sex therapist").
+  - Broad `sex` also blocks "same sex couples/marriage counseling" and "sex abuse therapist" (~$90/30d). Small spend, but these are real services; phrase negatives (`sex therapist`, `sex therapy`, `sex addiction`, `sex counseling`) would spare them.
+  - Not covered by `kids`: child / children / teen / pediatric terms (~$15k/30d, CPB ~$316). Still undecided.
+- **Revisit later (test, don't just leave excluded):** both themes had some real demand and bookings, just at 2-3x CPB. Possible tests: a dedicated child/teen or sex-therapy campaign with its own landing page, budget cap and tCPA; or re-open in states with child/sex-therapy clinician supply. Check first: minimum client age and which clinicians offer sex therapy.
+- Other candidates from the same review, not yet actioned: medication-lookup phrases (`side effects`, `vs`, `uses`, `used for`, `what are`, `stages of grief`, autism levels, etc.); `what is` (PMax only; it blocks booking Search terms); competitor names leaking into PMax (blue umbrella psychiatry, emerald psychiatry). Keep bare drug names: they booked at a ~$156 CPB in PMax.
+- Account facts: the ACCOUNT_LEVEL negative list is empty; the "| Exclude Everywhere" shared lists are what's attached to all PMax + Search campaigns. "GGL_NBD_PMAX_TalkTherapy | Universal Keyword Negative" (756 terms, includes phrase `therapy`/`therapist`) is attached to nothing; don't attach it as is.
+
+## API access in the cloud session (2026-11-13)
+- The proxy breaks the `Authorization` header to googleads.googleapis.com. What works: POST oauth2.googleapis.com/token with only grant_type=refresh_token + refresh token (proxy adds client auth), then call v23 `googleAds:search` with `?access_token=` plus the `login-customer-id` header. The repo client (`google_ads/rest.py`) does not do this yet.
