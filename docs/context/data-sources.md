@@ -22,3 +22,11 @@ Note: the connector returned tab structure and sample rows only, not full tables
 - Tabs: TT/NP Spending Recos (tCPA tiers "$240 TCPA" and "$205 TCPA", keyed to LTV:CAC "High L:C"), LTV Cac (All States 1.87, VA 3.32), TT & NP (headcount, brand on/off, psychiatrist present), TT Board Callout, Hiring Recos/Model, Geo Expansion Matrix, Affiliate (VeryWell tiers/CPL), Blackout for B2B, Jun-25 State Update, utilization/intake-slot/headcount/first-booking data tabs for TT and NP, PS Ad Spend Regression, State List.
 - Cross-check candidates once API is live: **John's Daily Paid Report** (state x day Google Ads spend + first bookings, ~4.7k rows) and **GGL First Bookings By Service** (weekly first bookings by state, channel, tactic, ~9.5k rows).
 - Discrepancies vs onboarding guide: tCPA $240/$205 vs guide $200/$250; LTV:CAC all-states 1.87 vs guide 1.99 (date/definition unknown).
+
+## State tiers (source of truth: Marketing Ad Spend Decision Calculator, tabs "TT Spending Recos" / "NP Spending Recos"; read 2026-11-16)
+Tiers are supply tiers and differ by service line. The sheet also routes each state to campaigns; the account matched the sheet's routing when checked.
+- **Talk Therapy Tier 1:** FL, GA, MA, NC, NJ, PA, SC, TX, VA
+- **TT Tier 2:** CO, CT, IL, MI. **TT Tier 3:** AL, AR, AZ, LA, MD, MS, OH, OR, TN. **TT Tier 4:** DC, DE, IN, ME, MO, MT, NM, RI, WA. Blackout for B2B / do not spend: the rest.
+- **Psychiatry Tier 1:** FL, NC, TX, VA. **NP Tier 2:** CA, GA, MA, NJ, PA. **NP Tier 3:** DE, IL, MD, MI, SC. **NP Tier 4:** AZ, CO, CT, DC, ID, IN, LA, NM, OH, OK, TN.
+- Campaign names don't track tiers: GGL_NBD_GSE_ExactMatch_Tier 1 = TT Tier 1 minus SC, plus IL and MI (Tier 2). SC exact sits in ExactMatch_Tier 2. PMAX_TalkTherapy V2 = TT Tier 1 minus MA and PA, plus CT.
+- Broad talk therapy Search is PAUSED for NJ and IL per the sheet (NJ is covered by PMax V2; IL has no broad or PMax).
