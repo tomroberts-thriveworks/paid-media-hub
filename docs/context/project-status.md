@@ -40,3 +40,10 @@
 - Baseline, Oct 14 - Nov 12: $44.3k spend; bids on account-level goals (1,008 conv: 796 CallRail local click-to-calls, 145 phone calls, 66 Event 1) = $44 per bidding conversion, already above the $36 target. Bookings* 224 (E1 66 / E4 158) -> CPB $198 vs $265 for all non-brand Search; Event 1-only CPB $672, also among the best. Search IS 16%, 84% lost to rank, 0% to budget ($4,800/day budget).
 - Same setup on GGL_NBD_GSE_ExactMatch_Tier 1_PsychMedication (portfolio tCPA $38, CPB $205).
 - Judge the change on Bookings* CPB, not the campaign's own CPA.
+
+## Sheet vs account location audit (2026-11-16)
+TT/NP Spending Recos tabs are meant to track what's on/off by state. Checked against enabled Google campaigns with spend (Nov 9-15):
+- **Targeting matches the sheet** for TT broad, TT PMax, TT exact, brand (27 states), NP broad, NP PMax and NP exact (T1/T2). 0 state-level mismatches.
+- **Mismatch: Demand Gen.** The sheet says TalkTherapy Demand Gen is ON for NC, SC, VA; the only Demand Gen campaign is paused.
+- **Out-of-state serving:** $70k of $776k (9%), Oct 17-Nov 15, came from users outside the campaign's target states, at $313 CPB vs $230 in-state. Mostly from 5 campaigns set to "Presence or interest" (BroadMatch T3T4, SC, NC, PA; PMax TalkTherapy V2 and T3T4); the rest use "Presence". Biggest out-of-state users: TN, NM, MD, AL, OH (sheet off or paused for most channels). Recommend switching those to Presence.
+- Not checked: Bing, Meta, ChatGPT, ZocDoc columns (no API access yet).
