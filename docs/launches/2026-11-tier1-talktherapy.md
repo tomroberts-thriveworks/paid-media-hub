@@ -23,7 +23,7 @@ Tracking: the account-level template sends `utm_campaign={campaignid}`, so the C
 - [ ] Final budgets / tCPA; observation audiences (ExactMatch_Tier 1 has 18) if wanted
 
 ## SOP checklist (per campaign x3)
-- [ ] Step 2: NICE ticket for 2 numbers per campaign (pool + call asset) = 6 total. Path: Request a Service > WFM Request/Issues > Nice New Phone Number. G-chat Carlos Cardona.
+- [x] (2026-11-17) Step 2: NICE ticket for 2 numbers per campaign (pool + call asset) = 6 total. Path: Request a Service > WFM Request/Issues > Nice New Phone Number. G-chat Carlos Cardona.
 - [ ] Marketing Channel tab: new row per number (point_of_contact = name above, state = Other, marketing channel), drag orange formulas
 - [ ] Step 3: CallRail pool (On my website > Google Ad Pool > Landing page param above), 804 area code, forward to NICE pool number (or 855-204-2767 until ready), recording ON, delete auto-text, opt out of message routing, then turn texting OFF
 - [ ] CallRail support ticket: New Swap Target Bulk Request listing all 3 pools (one ticket)
