@@ -55,3 +55,8 @@ TT/NP Spending Recos tabs are meant to track what's on/off by state. Checked aga
 - Each campaign needs the full Paid Search Campaign Launch SOP (2 NICE numbers, CallRail pool + EXT, swap ticket, mapping sheets, workflow keyed on campaign ID, since utm_campaign={campaignid}).
 - Draft keywords from ExactMatch_Tier 1 history: Phrase 27 city ad groups / 121 kws; Broad 16 ad groups / 157 kws (keep rule: >=1,000 impr or >=3 Bookings* in 90d). 12 kids/sex keywords dropped (blocked by the "All campaigns" negative list).
 - Routing: add Phrase campaign city names as negatives on the Broad campaign (and consider on state campaigns), otherwise broad keywords compete for city searches.
+
+## Spend vs distance to offices (distance_view, Aug 19 - Nov 16, 2026; non-brand)
+- Distance from the user to the nearest location asset (cumulative buckets differenced): 41% of spend within 5 mi, 71% within 10 mi, 84% within 15 mi, 98% within 40 mi.
+- CPB is flat across distance: $245-$273 in every band (Event 1-only CPB also flat, $760-$1,200, no trend). Same pattern for PMax and Search separately.
+- Conclusion: spend is concentrated near offices, but near-office traffic books at the same efficiency as distant traffic, so an office-exclusion duplicate isn't supported on efficiency. The open question is incrementality (would near-office bookings happen anyway via GBP/organic?), which needs a geo holdout, not a duplicate campaign.
