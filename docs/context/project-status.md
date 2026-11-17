@@ -48,3 +48,10 @@ TT/NP Spending Recos tabs are meant to track what's on/off by state. Checked aga
 - **Out-of-state serving:** $70k of $776k (9%), Oct 17-Nov 15, came from users outside the campaign's target states, at $313 CPB vs $230 in-state. Mostly from 5 campaigns set to "Presence or interest" (BroadMatch T3T4, SC, NC, PA; PMax TalkTherapy V2 and T3T4); the rest use "Presence". Biggest out-of-state users: TN, NM, MD, AL, OH (sheet off or paused for most channels). Recommend switching those to Presence.
 - Not checked: Bing, Meta, ChatGPT, ZocDoc columns (no API access yet).
 - **2026-11-16: switched 6 campaigns from "Presence or interest" to "Presence"** via API (Tom approved): BroadMatch_Tier 3 Tier 4, BroadMatch_South Carolina, BroadMatch_Tier 1_Pennsylvania, BroadMatch_Tier 1_North Carolina, PMAX_TalkTherapy V2, PMAX_TalkTherapy Tier 3 Tier 4. All enabled campaigns are now Presence. Change history (Oct 18-Nov 16) showed no location-target edits in these campaigns, so the out-of-state baseline wasn't caused by old targeting. Baseline: $70k/30d out-of-state at $313 CPB. Re-check ~Nov 30: out-of-state share, total Bookings*, CPB.
+
+## Tier 1 rebuild (decided 2026-11-17)
+- Two new campaigns, one match type each: `GGL_NBD_GSE_Tier 1_TalkTherapy_Phrase` (city/location keywords) and `GGL_NBD_GSE_Tier 1_TalkTherapy_Broad` (service/specialty keywords). They sit alongside the state-only campaigns (Geo_ / BroadMatch_), which stay for volume.
+- States = TT Tier 1 per the spend calculator: FL, GA, MA, NC, NJ, PA, SC, TX, VA (drops IL, MI vs ExactMatch_Tier 1).
+- Each campaign needs the full Paid Search Campaign Launch SOP (2 NICE numbers, CallRail pool + EXT, swap ticket, mapping sheets, workflow keyed on campaign ID, since utm_campaign={campaignid}).
+- Draft keywords from ExactMatch_Tier 1 history: Phrase 27 city ad groups / 121 kws; Broad 16 ad groups / 157 kws (keep rule: >=1,000 impr or >=3 Bookings* in 90d). 12 kids/sex keywords dropped (blocked by the "All campaigns" negative list).
+- Routing: add Phrase campaign city names as negatives on the Broad campaign (and consider on state campaigns), otherwise broad keywords compete for city searches.
