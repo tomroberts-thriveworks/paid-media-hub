@@ -8,6 +8,15 @@ Tracking: the account-level template sends `utm_campaign={campaignid}`, so the C
 | GGL_NBD_GSE_Tier 1_TalkTherapy_Broad | 24470038980 | utm_campaign=24470038980 | Paid Search - GGL_NBD_GSE_Tier 1_TalkTherapy_Broad | Paid Search - GGL_NBD_GSE_Tier 1_TalkTherapy_Broad - EXT |
 | GGL_NBD_GSE_Tier 1_TalkTherapy_Virtual | 24470038992 | utm_campaign=24470038992 | Paid Search - GGL_NBD_GSE_Tier 1_TalkTherapy_Virtual | Paid Search - GGL_NBD_GSE_Tier 1_TalkTherapy_Virtual - EXT |
 
+## NICE numbers (received 2026-11-20)
+Assumed: "1" = pool number (CallRail pool forwards here), "2" = call-asset number (the " - EXT" CallRail number forwards here). Confirm.
+
+| Campaign | NICE 1 (pool) | NICE 2 (call asset / EXT) |
+|---|---|---|
+| GGL_NBD_GSE_Tier 1_TalkTherapy_Phrase | 855-973-6600 | 855-973-7422 |
+| GGL_NBD_GSE_Tier 1_TalkTherapy_Broad | 855-973-6925 | 855-973-7596 |
+| GGL_NBD_GSE_Tier 1_TalkTherapy_Virtual | 855-973-7227 | 855-973-7711 |
+
 ## Built (via API)
 - All 3: Search only (no partners/display), English, 9 TT Tier 1 states (FL GA MA NC NJ PA SC TX VA) on Presence, ad schedule copied from ExactMatch_Tier 1 (M-F 8-23, Sa-Su 8-18), the same 12 shared negative lists as ExactMatch_Tier 1, Maximize Conversions with no target.
 - Phrase / Broad: account-level goals (same as ExactMatch_Tier 1); "All Locations Practices" location group attached.
