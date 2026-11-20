@@ -24,7 +24,7 @@ Tracking: the account-level template sends `utm_campaign={campaignid}`, so the C
 
 ## SOP checklist (per campaign x3)
 - [x] (2026-11-17) Step 2: NICE ticket for 2 numbers per campaign (pool + call asset) = 6 total. Path: Request a Service > WFM Request/Issues > Nice New Phone Number. G-chat Carlos Cardona.
-- [ ] Marketing Channel tab: new row per number (point_of_contact = name above, state = Other, marketing channel), drag orange formulas
+- [x] (2026-11-20) Marketing Channel tab: 6 rows added at rows 2706-2711 (point_of_contact = name above, state = Other, Paid Search (Nonbrand) (Search)); D resolves to "Paid Search", E = 1
 - [ ] Step 3: CallRail pool (On my website > Google Ad Pool > Landing page param above), 804 area code, forward to NICE pool number (or 855-204-2767 until ready), recording ON, delete auto-text, opt out of message routing, then turn texting OFF
 - [ ] CallRail support ticket: New Swap Target Bulk Request listing all 3 pools (one ticket)
 - [ ] After CallRail closes ticket: set forward-to NICE number; "TBDXYZ" landing-param reset trick; QA in a fresh browser with ?utm_campaign=<ID>
