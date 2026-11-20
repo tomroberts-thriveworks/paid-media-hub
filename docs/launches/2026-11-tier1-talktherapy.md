@@ -34,8 +34,8 @@ Confirmed 2026-11-20: "1" = pool number (CallRail pool and workflow branch forwa
 ## SOP checklist (per campaign x3)
 - [x] (2026-11-17) Step 2: NICE ticket for 2 numbers per campaign (pool + call asset) = 6 total. Path: Request a Service > WFM Request/Issues > Nice New Phone Number. G-chat Carlos Cardona.
 - [x] (2026-11-20) Marketing Channel tab: 6 rows added at rows 2706-2711 (point_of_contact = name above, state = Other, Paid Search (Nonbrand) (Search)); D resolves to "Paid Search", E = 1
-- [ ] Step 3: CallRail pool (On my website > Google Ad Pool > Landing page param above), 804 area code, forward to NICE pool number (or 855-204-2767 until ready), recording ON, delete auto-text, opt out of message routing, then turn texting OFF
-- [ ] CallRail support ticket: New Swap Target Bulk Request listing all 3 pools (one ticket)
+- [x] (2026-11-20) Step 3: CallRail pool, 804 for all 3, names GGL_NBD_GSE_Tier 1_TalkTherapy_<Phrase|Broad|Virtual> (On my website > Google Ad Pool > Landing page param above), 804 area code, forward to NICE pool number (or 855-204-2767 until ready), recording ON, delete auto-text, opt out of message routing, then turn texting OFF
+- [x] (2026-11-20) CallRail support ticket: New Swap Target Bulk Request listing all 3 pools (one ticket). Waiting on CallRail.
 - [ ] After CallRail closes ticket: set forward-to NICE number; "TBDXYZ" landing-param reset trick; QA in a fresh browser with ?utm_campaign=<ID>
 - [ ] CallRail call asset: Somewhere else > Google Ads Assets, name + " - EXT"
 - [ ] Online Channel Mapping tab: new row per campaign (UTM campaign = ID)
