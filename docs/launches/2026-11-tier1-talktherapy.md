@@ -9,7 +9,7 @@ Tracking: the account-level template sends `utm_campaign={campaignid}`, so the C
 | GGL_NBD_GSE_Tier 1_TalkTherapy_Virtual | 24470038992 | utm_campaign=24470038992 | Paid Search - GGL_NBD_GSE_Tier 1_TalkTherapy_Virtual | Paid Search - GGL_NBD_GSE_Tier 1_TalkTherapy_Virtual - EXT |
 
 ## NICE numbers (received 2026-11-20)
-Assumed: "1" = pool number (CallRail pool forwards here), "2" = call-asset number (the " - EXT" CallRail number forwards here). Confirm.
+Confirmed 2026-11-20: "1" = pool number (CallRail pool and workflow branch forward here), "2" = call-asset number (the " - EXT" CallRail number forwards here).
 
 | Campaign | NICE 1 (pool) | NICE 2 (call asset / EXT) |
 |---|---|---|
