@@ -56,6 +56,14 @@ TT/NP Spending Recos tabs are meant to track what's on/off by state. Checked aga
 - Draft keywords from ExactMatch_Tier 1 history: Phrase 27 city ad groups / 121 kws; Broad 16 ad groups / 157 kws (keep rule: >=1,000 impr or >=3 Bookings* in 90d). 12 kids/sex keywords dropped (blocked by the "All campaigns" negative list).
 - Routing: add Phrase campaign city names as negatives on the Broad campaign (and consider on state campaigns), otherwise broad keywords compete for city searches.
 
+## Region PsychMedication changes (2026-11-23)
+- Region's role (per Tom's team): broad + phrase layer for any state with at least 3 psychiatry providers; EM Tier 1 Psych = exact match for the highest-supply psych states.
+- **2026-11-23, via API (Tom approved):** AI Max turned OFF on GGL_NBD_GSE_Region_PsychMedication_LC (PMax expected to pick up the expansion traffic). Added states FL, NC, NM, DE, IN, LA, ID, OK (open psychiatry capacity per NP utilization). Region now targets 22 states; CO, OH, OR are still excluded (reason unknown, left as is).
+- Baseline before the change (Aug 19 - Nov 22): AI Max-matched terms in Region $6.8k at $236 CPB vs $250 for keyword-matched terms. Re-check ~Dec 7: Region spend mix by state, CPB, and whether PMax psych volume rose.
+- California held: the paused GGL_NBD_GSE_Psych_GEO_California ($1,000/day budget) should be audited and relaunched instead.
+- Psychologist keywords always belong in therapy campaigns, not psychiatry (Tom, 2026-11-23).
+- Drafts (not built): psych EM catch-all breakout and Region city phrase ad groups (34 cities, 204 phrase keywords), Google Sheet "Psych Exact Match (T1 and T2) ad group breakout draft".
+
 ## Spend vs distance to offices (distance_view, Aug 19 - Nov 16, 2026; non-brand)
 - Distance from the user to the nearest location asset (cumulative buckets differenced): 41% of spend within 5 mi, 71% within 10 mi, 84% within 15 mi, 98% within 40 mi.
 - CPB is flat across distance: $245-$273 in every band (Event 1-only CPB also flat, $760-$1,200, no trend). Same pattern for PMax and Search separately.
