@@ -64,6 +64,12 @@ TT/NP Spending Recos tabs are meant to track what's on/off by state. Checked aga
 - Psychologist keywords always belong in therapy campaigns, not psychiatry (Tom, 2026-11-23).
 - Drafts (not built): psych EM catch-all breakout and Region city phrase ad groups (34 cities, 204 phrase keywords), Google Sheet "Psych Exact Match (T1 and T2) ad group breakout draft".
 
+## California psych relaunch prep (2026-11-23)
+- GGL_NBD_GSE_Psych_GEO_California (ID 22470345054) last ran Oct 15, 2025. Jul-Oct 2025 (after Event 4 tracking started): $10.3k, 63 Bookings*, ~$163 CPB. Audit: Google Sheet "CA Psych relaunch audit (GGL_NBD_GSE_Psych_GEO_California)".
+- **2026-11-23, via API (Tom approved), campaign still PAUSED:** budget $1,000 -> $300/day; bidding Target ROAS portfolio "TW Non-Brand California Psych" (1.1) -> Maximize conversions; campaign goal set to "CG: Event 1 & Event 4"; ad-group tROAS (payer groups) and $110 tCPA (Service - Psychiatry) cleared; Service - Child/Psychiatry enabled; 41 keywords paused (psychologist/therapy intent, plus "psychiatrist near me accepting new patients" and "psychiatrist for teens near me" broad); "psychiatrist newport news" removed; 12 phrase negatives (kaiser, medi cal, medi-cal, molina, psicologo/psicólogo(s), psychologist, psychology, therapist, counseling); 35 ads moved from /book-online/ and /psychiatry/ to /find-help/psychiatry-care/ (insurance-page ads unchanged); 16 office-city ad groups "Loc - {City}, CA" with 6 phrase keywords each (HEALTH_IN_PERSONALIZED_ADS exemption requested) and one RSA copied from Service - Psychiatry.
+- Before enabling: CA call center hours (schedule is in ET, runs ~5am-5pm PT weekdays), Carelon/Lucet CA network, CA min patient age, ad copy fixes + in-network plan count, call asset 855-470-2956 / NICE / CallRail / channel mapping, psych sitelinks, which CA offices have psychiatry providers.
+- After launch: add tCPA (~$200) once ~30 bookings; watch EM T1 Psych CA CPB (baseline $296, Aug 24-Nov 22).
+
 ## Spend vs distance to offices (distance_view, Aug 19 - Nov 16, 2026; non-brand)
 - Distance from the user to the nearest location asset (cumulative buckets differenced): 41% of spend within 5 mi, 71% within 10 mi, 84% within 15 mi, 98% within 40 mi.
 - CPB is flat across distance: $245-$273 in every band (Event 1-only CPB also flat, $760-$1,200, no trend). Same pattern for PMax and Search separately.
