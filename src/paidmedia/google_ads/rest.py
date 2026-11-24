@@ -3,6 +3,10 @@
 Built for the cloud environment, where the egress proxy injects secrets per host:
   - oauth2.googleapis.com     -> HTTP Basic auth = client ID / client secret
   - googleads.googleapis.com  -> header `developer-token`
+In the cloud the proxy also overwrites any `Authorization` header sent to
+googleads.googleapis.com, so a Bearer token never arrives (Google answers
+401 "credentials missing"). In cloud mode the access token is therefore sent as
+the `?access_token=` query parameter instead.
 So the code only needs GOOGLE_ADS_REFRESH_TOKEN, GOOGLE_ADS_LOGIN_CUSTOMER_ID and
 GOOGLE_ADS_CUSTOMER_IDS. If GOOGLE_ADS_CLIENT_ID/SECRET or GOOGLE_ADS_DEVELOPER_TOKEN
 are set (e.g. on the laptop), they are sent explicitly instead.
@@ -60,19 +64,29 @@ class AdsClient:
         self._token, self._expires = data["access_token"], time.time() + data.get("expires_in", 3600)
         return self._token
 
+    @staticmethod
+    def _laptop_mode() -> bool:
+        return bool(os.environ.get("GOOGLE_ADS_DEVELOPER_TOKEN"))
+
     def _headers(self):
-        h = {"Authorization": f"Bearer {self.access_token()}", "Content-Type": "application/json"}
+        h = {"Content-Type": "application/json"}
         if self.login_customer_id:
             h["login-customer-id"] = self.login_customer_id
-        dev = os.environ.get("GOOGLE_ADS_DEVELOPER_TOKEN")
-        if dev:  # laptop mode; in the cloud the proxy adds it
-            h["developer-token"] = dev
+        if self._laptop_mode():  # in the cloud the proxy adds the developer token
+            h["developer-token"] = os.environ["GOOGLE_ADS_DEVELOPER_TOKEN"]
+            h["Authorization"] = f"Bearer {self.access_token()}"
         return h
+
+    def _url(self, url: str) -> str:
+        """Cloud mode: the proxy overwrites Authorization, so pass the token in the URL."""
+        if self._laptop_mode():
+            return url
+        return url + ("&" if "?" in url else "?") + urllib.parse.urlencode({"access_token": self.access_token()})
 
     # --- queries ----------------------------------------------------------
     def _search_once(self, version, customer_id, query):
         url = f"{API_ROOT}/{version}/customers/{customer_id}/googleAds:searchStream"
-        return _post(url, json.dumps({"query": query}).encode(), self._headers())
+        return _post(self._url(url), json.dumps({"query": query}).encode(), self._headers())
 
     def search(self, customer_id: str, query: str):
         """Yield result rows as dicts (REST JSON, camelCase field names)."""
@@ -95,7 +109,7 @@ class AdsClient:
         """List accounts the signed-in user can reach (smoke test, no customer ID needed)."""
         for v in [self.version] if self.version else CANDIDATE_VERSIONS:
             url = f"{API_ROOT}/{v}/customers:listAccessibleCustomers"
-            req = urllib.request.Request(url, headers=self._headers())
+            req = urllib.request.Request(self._url(url), headers=self._headers())
             try:
                 with urllib.request.urlopen(req, timeout=60) as r:
                     self.version = v
