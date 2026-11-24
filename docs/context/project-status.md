@@ -73,6 +73,11 @@ TT/NP Spending Recos tabs are meant to track what's on/off by state. Checked aga
 - **2026-11-24, via API (Tom approved):** payer groups de-duplicated: 57 keywords paused (same wording in exact/phrase, accept/take/accepting variants); 3-4 phrase-led keywords left per payer group (Aetna, Anthem, BCBS, Cigna, Humana, Medicare, Tricare, UHC).
 - After launch: add tCPA (~$200) once ~30 bookings; watch EM T1 Psych CA CPB (baseline $296, Aug 24-Nov 22).
 
+## Michigan exact/phrase test (2026-11-24)
+- Geo_Michigan traffic fell from ~4,000 clicks/mo (Q1) to 1,200-2,600 (Apr-Oct); bookings held (73 Jan, 85 Oct). Causes: "find a therapist" [phrase] (Q1: 3,682 clicks, 56 Bookings*) did not serve Jul-Oct and is back at 32% IS; ~70% IS lost to rank with tCPA $200 vs ~$244 actual CPB; everything consolidated into Service - Psychology. Draft: Google Sheet "Michigan (GGL_NBD_GSE_Geo_Michigan) restructure draft".
+- **2026-11-24, via API (Tom asked):** added 32 ad groups alongside the 8 existing live ones (left unchanged): 9 "EM | ..." exact groups (31 keywords with 3+ Bookings* in Q1 or last 90d), 12 "PH | ..." phrase groups (all 57 keep keywords) and 11 "PH | Loc: {City}, MI" groups (9 offices + Lansing, Kalamazoo; 6 phrase kws each). RSAs copied from the matching live groups. AI Max search-term matching disabled on all 32 new groups (campaign-level AI Max still on). Not changed: tCPA $200, budget, schedule (weekdays only).
+- Compare new vs old groups after 2-3 weeks: clicks, impression share, CPB.
+
 ## Spend vs distance to offices (distance_view, Aug 19 - Nov 16, 2026; non-brand)
 - Distance from the user to the nearest location asset (cumulative buckets differenced): 41% of spend within 5 mi, 71% within 10 mi, 84% within 15 mi, 98% within 40 mi.
 - CPB is flat across distance: $245-$273 in every band (Event 1-only CPB also flat, $760-$1,200, no trend). Same pattern for PMax and Search separately.
