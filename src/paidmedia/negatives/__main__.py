@@ -86,9 +86,10 @@ def main():
             batches = [ops[i:i + 250] for i in range(0, len(ops), 250)]
             for b in batches:                       # validate everything before changing anything
                 client.mutate(cid, "adGroupCriteria", b, validate_only=True)
+                time.sleep(10)
             for b in batches:
                 client.mutate(cid, "adGroupCriteria", b, validate_only=False)
-                time.sleep(2)
+                time.sleep(20)
             print(f"  APPLIED {len(ops)} negatives")
     os.makedirs("data/negatives", exist_ok=True)
     path = f"data/negatives/plan_{dt.date.today()}.csv"
