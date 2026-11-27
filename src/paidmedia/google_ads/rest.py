@@ -29,6 +29,10 @@ class GoogleAdsError(RuntimeError):
     pass
 
 
+class QuotaExhausted(GoogleAdsError):
+    """The developer token's daily operation allowance is used up."""
+
+
 def _post(url, body: bytes, headers: dict):
     req = urllib.request.Request(url, data=body, headers=headers, method="POST")
     try:
@@ -113,10 +117,14 @@ class AdsClient:
         url = f"{API_ROOT}/{self.version}/customers/{customer_id}/{service}:mutate"
         body = json.dumps({"operations": operations, "validateOnly": validate_only,
                            "partialFailure": False}).encode()
-        for attempt in range(6):  # back off on rate limits (429 RESOURCE_EXHAUSTED)
+        for attempt in range(6):  # back off on short rate limits (429 RESOURCE_EXHAUSTED)
             status, out = _post(self._url(url), body, self._headers())
             if status != 429:
                 break
+            if b"explorer access" in out.lower() or b"DEVELOPER" in out:
+                raise QuotaExhausted("Daily API operation limit reached (developer token has Explorer "
+                                     "access). It resets around midnight Pacific; retry then, or use "
+                                     "the Google Ads Editor import file.")
             time.sleep(min(15 * 2 ** attempt, 240))
         if status != 200:
             raise GoogleAdsError(f"{service} mutate failed ({status}): {out[:2000].decode(errors='replace')}")

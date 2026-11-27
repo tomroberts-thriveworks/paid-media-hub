@@ -79,6 +79,12 @@ TT/NP Spending Recos tabs are meant to track what's on/off by state. Checked aga
 - **2026-11-24 (Tom asked):** removed all 118 paused ad groups in Geo_Michigan (none had impressions in the last 30 days). Campaign now has 40 ad groups, all enabled (8 original + 32 new).
 - Compare new vs old groups after 2-3 weeks: clicks, impression share, CPB.
 
+## Negative keyword funneling script (2026-11-27)
+- `PYTHONPATH=src python -m paidmedia.negatives` (dry run; `--apply`, `--no-validate`, `--editor-csv`). Config in `src/paidmedia/negatives/themes.py`: theme word lists (with plurals/spellings, since negatives don't use close variants) and a per-campaign priority order. Rules: phrase negatives for higher-priority themes' words (cities and carriers negate each other); PH groups get their EM twin's keywords as exact negatives; recent search terms that leaked into the wrong theme become exact negatives; never blocks a group's own keywords.
+- Managed groups: Geo_Michigan "EM | / PH |" test groups (32) and all enabled groups in Psych_GEO_California (27). Michigan priority: city > insurance > christian > identity > ADHD > trauma > anxiety/depression > child/teen > family > couples > psychologist > therapist > counseling. California: city > carriers > child > teen > psychiatry.
+- **2026-11-27 applied (Tom asked):** 1,000 of 1,449 Michigan negatives. Stopped by the developer token's daily operation limit ("Explorer access"; validate-only calls count too). Remaining 449 Michigan + 573 California: re-run after the daily reset (midnight Pacific) with `--apply --no-validate`, or import `data/negatives/editor_import_<date>.csv` in Google Ads Editor (no API quota).
+- Account-wide rollout will need Basic access for the developer token (Explorer allows only a few thousand operations a day) or Editor imports.
+
 ## Spend vs distance to offices (distance_view, Aug 19 - Nov 16, 2026; non-brand)
 - Distance from the user to the nearest location asset (cumulative buckets differenced): 41% of spend within 5 mi, 71% within 10 mi, 84% within 15 mi, 98% within 40 mi.
 - CPB is flat across distance: $245-$273 in every band (Event 1-only CPB also flat, $760-$1,200, no trend). Same pattern for PMax and Search separately.

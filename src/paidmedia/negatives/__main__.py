@@ -10,7 +10,7 @@ import os
 import time
 from collections import Counter, defaultdict
 
-from ..google_ads.rest import AdsClient
+from ..google_ads.rest import AdsClient, QuotaExhausted
 from .sculpt import Group, norm, plan
 from .themes import CAMPAIGNS
 
@@ -60,10 +60,14 @@ def main():
     p.add_argument("--campaign", action="append", choices=sorted(CAMPAIGNS))
     p.add_argument("--days", type=int, default=30, help="search-term lookback")
     p.add_argument("--apply", action="store_true", help="add the negatives (default: dry run)")
+    p.add_argument("--no-validate", action="store_true",
+                   help="skip Google's validate-only pass (it counts against the daily operation limit)")
+    p.add_argument("--editor-csv", action="store_true",
+                   help="also write a Google Ads Editor import file of the negatives to add")
     a = p.parse_args()
     client = AdsClient()
     cid = client.customer_ids[0]
-    out_rows = []
+    out_rows, editor_rows = [], []
     for campaign in a.campaign or sorted(CAMPAIGNS):
         cfg = CAMPAIGNS[campaign]
         groups = load(client, cid, campaign, cfg["theme_of"])
@@ -78,18 +82,27 @@ def main():
             print(f"    {g}: {n}")
         for n in [n for n in adds if n.reason.startswith("search term")][:15]:
             print(f"    exact -> {n.group}: [{n.text}]  {n.reason}")
+        editor_rows += [[campaign, n.group, n.text, "Negative " + n.match.title()] for n in adds]
         for n in adds + skipped:
             out_rows.append([campaign, n.group, n.text, n.match, n.reason, "skip" if n in skipped else "add"])
         if a.apply and adds:
             ops = [{"create": {"adGroup": res[n.group], "negative": True,
                                "keyword": {"text": n.text, "matchType": n.match}}} for n in adds]
             batches = [ops[i:i + 250] for i in range(0, len(ops), 250)]
-            for b in batches:                       # validate everything before changing anything
-                client.mutate(cid, "adGroupCriteria", b, validate_only=True)
-                time.sleep(10)
-            for b in batches:
-                client.mutate(cid, "adGroupCriteria", b, validate_only=False)
-                time.sleep(20)
+            done = 0
+            try:
+                if not a.no_validate:
+                    for b in batches:               # validate everything before changing anything
+                        client.mutate(cid, "adGroupCriteria", b, validate_only=True)
+                        time.sleep(10)
+                for b in batches:
+                    client.mutate(cid, "adGroupCriteria", b, validate_only=False)
+                    done += len(b)
+                    time.sleep(20)
+            except QuotaExhausted as e:
+                print(f"  STOPPED after {done} of {len(ops)}: {e}")
+                a.apply = False   # don't attempt later campaigns today; re-run continues where this left off
+                continue
             print(f"  APPLIED {len(ops)} negatives")
     os.makedirs("data/negatives", exist_ok=True)
     path = f"data/negatives/plan_{dt.date.today()}.csv"
@@ -97,6 +110,13 @@ def main():
         w = csv.writer(f)
         w.writerow(["campaign", "ad_group", "negative", "match", "reason", "action"])
         w.writerows(out_rows)
+    if a.editor_csv:
+        epath = f"data/negatives/editor_import_{dt.date.today()}.csv"
+        with open(epath, "w", newline="") as f:
+            w = csv.writer(f)
+            w.writerow(["Campaign", "Ad group", "Keyword", "Criterion Type"])
+            w.writerows(editor_rows)
+        print(f"Google Ads Editor import file: {epath} ({len(editor_rows)} rows)")
     print(f"\nPlan written to {path}" + ("" if a.apply else "  (dry run: nothing changed; add --apply)"))
 
 
