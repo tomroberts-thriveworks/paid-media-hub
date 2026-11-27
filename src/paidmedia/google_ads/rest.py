@@ -105,6 +105,23 @@ class AdsClient:
             return
         raise GoogleAdsError(f"No API version answered; last: {last}")
 
+    # --- changes ----------------------------------------------------------
+    def mutate(self, customer_id: str, service: str, operations: list, validate_only: bool = True):
+        """POST {service}:mutate (e.g. 'adGroupCriteria'). validate_only=True is a dry run."""
+        if not self.version:
+            list(self.search(customer_id, "SELECT customer.id FROM customer LIMIT 1"))
+        url = f"{API_ROOT}/{self.version}/customers/{customer_id}/{service}:mutate"
+        body = json.dumps({"operations": operations, "validateOnly": validate_only,
+                           "partialFailure": False}).encode()
+        for attempt in range(6):  # back off on rate limits (429 RESOURCE_EXHAUSTED)
+            status, out = _post(self._url(url), body, self._headers())
+            if status != 429:
+                break
+            time.sleep(min(15 * 2 ** attempt, 240))
+        if status != 200:
+            raise GoogleAdsError(f"{service} mutate failed ({status}): {out[:2000].decode(errors='replace')}")
+        return json.loads(out or b"{}")
+
     def accessible_customers(self):
         """List accounts the signed-in user can reach (smoke test, no customer ID needed)."""
         for v in [self.version] if self.version else CANDIDATE_VERSIONS:
